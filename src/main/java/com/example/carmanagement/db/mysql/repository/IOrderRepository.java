@@ -12,4 +12,5 @@ public interface  IOrderRepository extends JpaRepository<OrderEntity,Integer> , 
     @Modifying
     @Query("update OrderEntity o set o.status = ?2 where  o.id = ?1")
      void updateOrderById(Integer orderId,Integer status);
+
 }
