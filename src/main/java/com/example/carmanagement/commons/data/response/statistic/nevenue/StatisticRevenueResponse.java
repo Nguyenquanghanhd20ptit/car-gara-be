@@ -10,6 +10,7 @@ public class StatisticRevenueResponse {
     private String name;
     private String email;
     private String phoneNumber;
+    private String avatarUrl;
     private Integer numCorrection;
     private Double totalPrice;
     private String currency;

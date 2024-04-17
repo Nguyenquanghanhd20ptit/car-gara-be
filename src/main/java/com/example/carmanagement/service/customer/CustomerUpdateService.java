@@ -9,7 +9,9 @@ import com.example.carmanagement.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.carmanagement.commons.data.constant.ErrorCodeConstant.ERROR_CODE_NOT_INFORMATION;
@@ -23,6 +25,18 @@ public class CustomerUpdateService extends BaseService {
 
     public ResponseEntity<String> update(Integer id, CustomerRequest request){
         try{
+            List<CustomerEntity> checkEmail = customerRepository.findByEmail(request.getEmail());
+            List<CustomerEntity> checkPhone  = customerRepository.findByPhoneNumber(request.getPhoneNumber());
+
+            if (!checkEmail.isEmpty()) {
+                this.invalidMessage = "Email đã tồn tại";
+                return createResponseErrorValidate();
+            }
+
+            if (!checkPhone.isEmpty()) {
+                this.invalidMessage = "Phone đã tồn tại";
+                return createResponseErrorValidate();
+            }
             Optional<CustomerEntity> opt = customerRepository.findById(id);
             if(opt.isEmpty()){
                    return createResponseError(ERROR_CODE_NOT_INFORMATION,"Thông tin khac hang khong hợp lệ");
@@ -35,6 +49,7 @@ public class CustomerUpdateService extends BaseService {
             }
             return createResponseSuccess("update success");
         }catch (Exception e){
+            e.printStackTrace();;
             return createResponseException(e);
         }
     }
