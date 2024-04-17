@@ -15,6 +15,7 @@ public class ResourceProperties {
     private final String cloudinaryName;
     private final String cloudinaryKey;
     private final String cloudinarySecret;
+    private final String momoModuleUrl;
     public ResourceProperties(@Value("${api.timeout}") int timeout,
                               @Value("${spring.redis.timeout}") int redisTimeout,
                               @Value("${spring.redis.host}") String redisHost,
@@ -22,7 +23,8 @@ public class ResourceProperties {
                               @Value("${spring.redis.password}") String redisPassword,
                               @Value("${upload.cloudinary.cloud-name}") String cloudinaryName,
                               @Value("${upload.cloudinary.api-key}") String cloudinaryKey,
-                              @Value("${upload.cloudinary.api-secret}") String cloudinarySecret){
+                              @Value("${upload.cloudinary.api-secret}") String cloudinarySecret,
+                              @Value("${momo.module.url}") String momoModuleUrl){
         this.redisTimeout = redisTimeout;
         this.timeout = timeout;
         this.redisHost = redisHost;
@@ -31,5 +33,6 @@ public class ResourceProperties {
         this.cloudinaryName = cloudinaryName;
         this.cloudinaryKey = cloudinaryKey;
         this.cloudinarySecret = cloudinarySecret;
+        this.momoModuleUrl = momoModuleUrl;
     }
 }

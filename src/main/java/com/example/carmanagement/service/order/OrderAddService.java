@@ -4,7 +4,7 @@ import com.example.carmanagement.commons.data.entity.*;
 import com.example.carmanagement.commons.data.mapper.accessory.AccessoryOrderMapper;
 import com.example.carmanagement.commons.data.mapper.order.OrderMapper;
 import com.example.carmanagement.commons.data.mapper.service.ServiceOrderMapper;
-import com.example.carmanagement.commons.data.model.enums.Currency;
+import com.example.carmanagement.commons.data.model.enums.CurrencyEnum;
 import com.example.carmanagement.commons.data.request.accessory.AccessoryOrderRequest;
 import com.example.carmanagement.commons.data.request.order.OrderRequest;
 import com.example.carmanagement.commons.data.request.service.ServiceOrderRequest;
@@ -85,12 +85,12 @@ public class OrderAddService extends BaseService {
             if(ObjectUtils.isEmpty(orderRequest.getServiceOrder()) && ObjectUtils.isEmpty(orderRequest.getAccessoryOrder())){
                 return false;
             }
-            if (!orderRequest.getCurrency().equalsIgnoreCase(Currency.USD.toString()) &&
-                    !orderRequest.getCurrency().equalsIgnoreCase(Currency.VNĐ.toString())) {
+            if (!orderRequest.getCurrency().equalsIgnoreCase(CurrencyEnum.USD.toString()) &&
+                    !orderRequest.getCurrency().equalsIgnoreCase(CurrencyEnum.VNĐ.toString())) {
                 this.invalidMessage = "currency is invalid";
                 return false;
             }
-            if (orderRequest.getCurrency().equals(Currency.VNĐ.toString())
+            if (orderRequest.getCurrency().equals(CurrencyEnum.VNĐ.toString())
                     && ( orderRequest.getTotalPrice() != Math.floor(orderRequest.getTotalPrice()) || orderRequest.getTotalPrice() < 1000)) {
                 this.invalidMessage = "VND money is a decimal number or less than 1000";
                 return false;
