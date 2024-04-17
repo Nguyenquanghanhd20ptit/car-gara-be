@@ -14,6 +14,7 @@ public class BookingResponse {
     private String name;
     private String slotName;
     private String conditionDes;
+    private String made;
     private String status;
     private LocalDateTime appointmentTime;
     private LocalDateTime createdAt;

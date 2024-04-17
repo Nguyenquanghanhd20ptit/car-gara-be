@@ -9,7 +9,9 @@ import com.example.carmanagement.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +23,19 @@ public class CustomerAddNewService extends BaseService {
     private ICustomerRepository customerRepository;
     public ResponseEntity<String> addNew(CustomerRequest request){
         try {
+            List<CustomerEntity> checkEmail = customerRepository.findByEmail(request.getEmail());
+            List<CustomerEntity> checkPhone  = customerRepository.findByPhoneNumber(request.getPhoneNumber());
+
+            if (!checkEmail.isEmpty()) {
+                this.invalidMessage = "Email đã tồn tại";
+                return createResponseErrorValidate();
+            }
+
+            if (!checkPhone.isEmpty()) {
+                this.invalidMessage = "Phone đã tồn tại";
+                return createResponseErrorValidate();
+            }
+
             CustomerEntity entity = customerMapper.toEntity(request);
             Optional<CustomerEntity> opt = Optional.of(customerRepository.save(entity));
             if(!opt.isPresent()){

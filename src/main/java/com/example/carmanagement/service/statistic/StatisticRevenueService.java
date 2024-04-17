@@ -47,6 +47,7 @@ public class StatisticRevenueService extends BaseService {
                                                 .setName(customer.getName())
                                                 .setEmail(customer.getEmail())
                                                 .setPhoneNumber(customer.getPhoneNumber())
+                                                .setAvatarUrl(customer.getAvatarUrl())
                                                 .setCurrency(orderEntities.get(0).getCurrency())
                                                 .setTotalPrice(totalPrice)
                                                 .setNumCorrection(list.size());
@@ -58,7 +59,7 @@ public class StatisticRevenueService extends BaseService {
             Long totalOrder = orderRepository.count(spec);
             List<OrderEntity> orders = orderRepository.findAll(spec);
             long totalCustomer = orders.stream()
-                    .map(OrderEntity::getCustomer)
+                    .map(order -> order.getCustomer().getId())
                     .distinct()
                     .count();
             StatisticRevenueDataResponse response = new StatisticRevenueDataResponse()

@@ -20,6 +20,7 @@ public class BookingEntity {
     private String customerNameSearch;
     private String slotName;
     private String conditionDes;
+    private String made;
     private Integer status;
     private LocalDateTime appointmentTime;
     @CreationTimestamp
