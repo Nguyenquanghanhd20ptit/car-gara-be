@@ -15,7 +15,7 @@ public class ServiceOrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class StatusOrderRequest {
-    public Integer orderId;
-    public Integer status;
+    private String orderId;
+    private Integer transactionId;
+    private Integer statusCode;
 }

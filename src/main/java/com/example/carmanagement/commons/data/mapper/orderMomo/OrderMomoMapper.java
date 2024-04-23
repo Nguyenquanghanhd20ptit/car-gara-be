@@ -16,11 +16,11 @@ import java.util.Optional;
 @Mapper(componentModel = "spring")
 public class OrderMomoMapper {
 
-    public InformationOrderMomo toOrderMomo(OrderEntity entity) {
+    public InformationOrderMomo toOrderMomo(OrderEntity entity,String redirectUrl) {
         return new InformationOrderMomo()
-                .setAmount(entity.getTotalPrice().longValue())
                 .setOrderId(entity.getId().toString())
                 .setUserInfo(toUserInfoMomo(entity.getCustomer()))
+                .setRedirectUrl(redirectUrl)
                 .setItems(toItemMomo(entity.getAccessoryOrder(), entity.getServiceOrder()));
     }
 

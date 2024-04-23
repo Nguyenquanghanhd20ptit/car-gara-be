@@ -16,6 +16,7 @@ import static com.example.carmanagement.commons.data.constant.ErrorMessageConsta
 
 public abstract class BaseService {
     protected final Gson gsonDateFormat = new GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .registerTypeAdapter(LocalDateTime.class,new LocalDateTimeSerializer())
             .create();
     protected final Gson gson = new Gson();
@@ -59,5 +60,14 @@ public abstract class BaseService {
                 .setErrorCode(ERROR_CODE_DURING_PROCESS)
                 .setErrorMessage(ERROR_MESSAGE_DURING_PROCESS);
         return ResponseEntity.ok(gsonSnakeCaseBuilder.toJson(dataResponse));
+    }
+
+    protected  <T> T convertToObject(DataResponse dataResponse,Class<T> tClass) {
+        try{
+            T obj = gsonSnakeCaseBuilder.fromJson( dataResponse.getData(),tClass);
+            return obj;
+        }catch (Exception e){
+            return null;
+        }
     }
 }

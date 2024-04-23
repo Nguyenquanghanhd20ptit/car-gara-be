@@ -1,6 +1,5 @@
 package com.example.carmanagement.service.order;
 
-import com.example.carmanagement.commons.data.constant.BookingConstant;
 import com.example.carmanagement.commons.data.constant.CarConstant;
 import com.example.carmanagement.commons.data.entity.BookingEntity;
 import com.example.carmanagement.commons.data.entity.OrderEntity;
@@ -15,7 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.example.carmanagement.commons.data.constant.OrderConstant.PAID_CODE;
+import static com.example.carmanagement.commons.data.constant.BookingConstant.BOOKING_PAID_CODE;
+import static com.example.carmanagement.commons.data.constant.OrderConstant.ORDER_PAID_CODE;
+import static com.example.carmanagement.commons.data.constant.TransactionConstant.MOMO_MESSAGE;
+
 
 @Service
 public class UpdateStatusOrderIsSuccessService extends BaseService {
@@ -31,12 +33,13 @@ public class UpdateStatusOrderIsSuccessService extends BaseService {
             if(!validateReq(orderId)){
                 return createResponseErrorValidate();
             }
-            orderRepository.updateOrderById(orderId,PAID_CODE);
+            orderRepository.updateStatusOrderById(orderId,ORDER_PAID_CODE);
+            orderRepository.updateTransactionName(orderId,MOMO_MESSAGE);
             Optional<OrderEntity> orderOpt = orderRepository.findById(orderId);
             OrderEntity orderEntity = orderOpt.get();
             BookingEntity booking = orderEntity.getBooking();
-            bookingRepository.updateStatusBookingIsSuccess(booking.getId(), BookingConstant.PAID_CODE);
-            carRepository.updateStatusCarIsSuccess(booking.getCar().getId(), CarConstant.RETURNED_CODE);
+            bookingRepository.updateStatusBookingIsSuccess(booking.getId(), BOOKING_PAID_CODE);
+            carRepository.updateStatusCarIsSuccess(booking.getCar().getId(), CarConstant.CAR_RETURNED_CODE);
             return createResponseSuccess("update status order success");
 
         }catch (Exception e){

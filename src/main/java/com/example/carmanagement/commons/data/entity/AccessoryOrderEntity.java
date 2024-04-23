@@ -16,7 +16,7 @@ public class AccessoryOrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer quantity;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     @CreationTimestamp
     private LocalDateTime createdAt;

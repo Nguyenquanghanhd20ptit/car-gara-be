@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 
 @Data
-@Accessors
+@Accessors(chain = true)
 @Entity
 @Table(name = "transaction_type")
 public class TransactionTypeEntity {

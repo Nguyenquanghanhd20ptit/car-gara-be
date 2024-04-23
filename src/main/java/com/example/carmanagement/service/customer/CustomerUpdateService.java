@@ -25,21 +25,21 @@ public class CustomerUpdateService extends BaseService {
 
     public ResponseEntity<String> update(Integer id, CustomerRequest request){
         try{
+            Optional<CustomerEntity> opt = customerRepository.findById(id);
+            if(opt.isEmpty()){
+                return createResponseError(ERROR_CODE_NOT_INFORMATION,"Thông tin khac hang khong hợp lệ");
+            }
             List<CustomerEntity> checkEmail = customerRepository.findByEmail(request.getEmail());
             List<CustomerEntity> checkPhone  = customerRepository.findByPhoneNumber(request.getPhoneNumber());
 
-            if (!checkEmail.isEmpty()) {
+            if (!checkEmail.isEmpty() && !checkEmail.get(0).getId().equals(id)) {
                 this.invalidMessage = "Email đã tồn tại";
                 return createResponseErrorValidate();
             }
 
-            if (!checkPhone.isEmpty()) {
+            if (!checkPhone.isEmpty() && !checkPhone.get(0).getId().equals(id)) {
                 this.invalidMessage = "Phone đã tồn tại";
                 return createResponseErrorValidate();
-            }
-            Optional<CustomerEntity> opt = customerRepository.findById(id);
-            if(opt.isEmpty()){
-                   return createResponseError(ERROR_CODE_NOT_INFORMATION,"Thông tin khac hang khong hợp lệ");
             }
             CustomerEntity customer = customerMapper.toEntity(request);
             customer.setId(id);

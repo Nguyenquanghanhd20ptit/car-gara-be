@@ -9,6 +9,6 @@ import javax.validation.constraints.NotBlank;
 @Accessors(chain = true)
 public class OrderMomoRequest {
     private Integer orderId;
-    @NotBlank(message = "returnUrl is not null")
-    private String returnUrl;
+    @NotBlank(message = "redirectUrl is not null")
+    private String redirectUrl;
 }

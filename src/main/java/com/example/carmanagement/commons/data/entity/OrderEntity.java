@@ -16,8 +16,8 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double totalPrice;
     private String currency;
+    private String transactionName;
     private Integer status;
     @CreationTimestamp
     private LocalDateTime createdAt;

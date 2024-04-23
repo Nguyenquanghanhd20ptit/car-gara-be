@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.example.carmanagement.commons.data.constant.OrderConstant.ORDER_STATUS;
-import static com.example.carmanagement.commons.data.constant.OrderConstant.UNPAID_CODE;
+import static com.example.carmanagement.commons.data.constant.OrderConstant.ORDER_UNPAID_CODE;
 
 @Mapper(componentModel = "spring")
 public abstract class OrderMapper {
@@ -34,7 +34,7 @@ public abstract class OrderMapper {
     public abstract OrderEntity toEntity(OrderRequest request);
     @AfterMapping
     public void  map(@MappingTarget OrderEntity order, OrderRequest request){
-        order.setStatus(UNPAID_CODE);
+        order.setStatus(ORDER_UNPAID_CODE);
         order.setCustomer(new CustomerEntity().setId(request.getCustomerId()));
         order.setBooking(new BookingEntity().setId(request.getBookingId()));
     }

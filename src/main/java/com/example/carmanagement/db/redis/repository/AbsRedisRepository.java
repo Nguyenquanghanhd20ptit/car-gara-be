@@ -12,7 +12,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-public abstract class BaseRedisRepository<ID, V> implements IBaseRedisRepository<ID, V> {
+public abstract class AbsRedisRepository<ID, V> implements IBaseRedisRepository<ID, V> {
     protected Logger logger = LogManager.getLogger("ite-ecommerce");
     protected Gson gson = new Gson();
     @Autowired
@@ -20,7 +20,7 @@ public abstract class BaseRedisRepository<ID, V> implements IBaseRedisRepository
     protected final CacheConfig cacheConfig;
     protected Class<V> vClass;
 
-    public BaseRedisRepository() {
+    public AbsRedisRepository() {
         this.cacheConfig = this.getClass().getAnnotation(CacheConfig.class);
         this.vClass = (Class<V>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[1];

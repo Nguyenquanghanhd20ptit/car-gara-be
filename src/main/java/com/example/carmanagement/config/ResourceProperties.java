@@ -16,6 +16,9 @@ public class ResourceProperties {
     private final String cloudinaryKey;
     private final String cloudinarySecret;
     private final String momoModuleUrl;
+    private final String rabbitmqDirectExchange;
+    private final String rabbitmqDirectRoutingStatusOrder;
+    private final String rabbitmqDirectQueueStatusOrder;
     public ResourceProperties(@Value("${api.timeout}") int timeout,
                               @Value("${spring.redis.timeout}") int redisTimeout,
                               @Value("${spring.redis.host}") String redisHost,
@@ -24,7 +27,10 @@ public class ResourceProperties {
                               @Value("${upload.cloudinary.cloud-name}") String cloudinaryName,
                               @Value("${upload.cloudinary.api-key}") String cloudinaryKey,
                               @Value("${upload.cloudinary.api-secret}") String cloudinarySecret,
-                              @Value("${momo.module.url}") String momoModuleUrl){
+                              @Value("${momo.module.url}") String momoModuleUrl,
+                              @Value("${rabbitmq.direct-exchange-momo}") String rabbitmqDirectExchange,
+                              @Value("${rabbitmq.direct-routing.status-order}") String rabbitmqDirectRoutingStatusOrder,
+                              @Value("${rabbitmq.direct-queue.status-order}") String rabbitmqDirectQueueStatusOrder){
         this.redisTimeout = redisTimeout;
         this.timeout = timeout;
         this.redisHost = redisHost;
@@ -34,5 +40,8 @@ public class ResourceProperties {
         this.cloudinaryKey = cloudinaryKey;
         this.cloudinarySecret = cloudinarySecret;
         this.momoModuleUrl = momoModuleUrl;
+        this.rabbitmqDirectExchange = rabbitmqDirectExchange;
+        this.rabbitmqDirectRoutingStatusOrder = rabbitmqDirectRoutingStatusOrder;
+        this.rabbitmqDirectQueueStatusOrder = rabbitmqDirectQueueStatusOrder;
     }
 }

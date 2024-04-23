@@ -14,7 +14,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class OrderResponse {
     private Integer id;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     private String status;
     private List<ServiceOrderResponse> serviceOrders;

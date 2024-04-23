@@ -21,7 +21,7 @@ public class UpdateStatusOrderService extends BaseService {
             if(!validateReq(request)){
                 return createResponseErrorValidate();
             }
-            orderRepository.updateOrderById(request.getOrderId(),request.getStatus());
+            orderRepository.updateStatusOrderById(Integer.parseInt( request.getOrderId()),request.getStatusCode());
             return createResponseSuccess("update status order success");
 
         }catch (Exception e){
@@ -31,13 +31,13 @@ public class UpdateStatusOrderService extends BaseService {
 
     private boolean validateReq(StatusOrderRequest request) {
         try {
-            Optional<OrderEntity> opt = orderRepository.findById(request.getOrderId());
+            Optional<OrderEntity> opt = orderRepository.findById(Integer.parseInt(request.getOrderId()));
             if (opt.isEmpty()) {
                 this.invalidMessage = "orderId is invalid";
                 return false;
 
             }
-            if (ORDER_STATUS.containsKey(request.getStatus())) {
+            if (ORDER_STATUS.containsKey(request.getStatusCode())) {
                 this.invalidMessage = "status is invalid";
                 return false;
             }
