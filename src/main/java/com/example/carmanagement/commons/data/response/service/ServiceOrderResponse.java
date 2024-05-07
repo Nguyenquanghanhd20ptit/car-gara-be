@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class ServiceOrderResponse {
     private Integer id;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     private ServiceResponse service;
     private LocalDateTime createdAt;

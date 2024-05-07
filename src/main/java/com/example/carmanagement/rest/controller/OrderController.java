@@ -75,7 +75,7 @@ public class OrderController {
     private UpdateStatusOrderIsSuccessService updateStatusOrderIsSuccessService;
 
     @PostMapping(value = "/update-status/isPaid", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = " update status order")
+    @Operation(summary = " update status order payment with Cash money")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success",
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}),
             @ApiResponse(responseCode = "400", description = "Bad request"),

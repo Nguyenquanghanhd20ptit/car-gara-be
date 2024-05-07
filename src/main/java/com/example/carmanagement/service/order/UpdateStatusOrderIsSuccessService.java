@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import static com.example.carmanagement.commons.data.constant.BookingConstant.BOOKING_PAID_CODE;
 import static com.example.carmanagement.commons.data.constant.OrderConstant.ORDER_PAID_CODE;
+import static com.example.carmanagement.commons.data.constant.TransactionConstant.CASH_MESSAGE;
 import static com.example.carmanagement.commons.data.constant.TransactionConstant.MOMO_MESSAGE;
 
 
@@ -34,7 +35,7 @@ public class UpdateStatusOrderIsSuccessService extends BaseService {
                 return createResponseErrorValidate();
             }
             orderRepository.updateStatusOrderById(orderId,ORDER_PAID_CODE);
-            orderRepository.updateTransactionName(orderId,MOMO_MESSAGE);
+            orderRepository.updateTransactionName(orderId,CASH_MESSAGE);
             Optional<OrderEntity> orderOpt = orderRepository.findById(orderId);
             OrderEntity orderEntity = orderOpt.get();
             BookingEntity booking = orderEntity.getBooking();

@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class AccessoryOrderRequest {
     private Integer quantity;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     private Integer accessoryId;
     private Integer orderId;

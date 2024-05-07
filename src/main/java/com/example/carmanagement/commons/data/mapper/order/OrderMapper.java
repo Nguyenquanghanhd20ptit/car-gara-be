@@ -5,6 +5,7 @@ import com.example.carmanagement.commons.data.entity.CustomerEntity;
 import com.example.carmanagement.commons.data.entity.OrderEntity;
 import com.example.carmanagement.commons.data.mapper.accessory.AccessoryOrderMapper;
 import com.example.carmanagement.commons.data.mapper.booking.BookingMapper;
+import com.example.carmanagement.commons.data.mapper.car.CarMapper;
 import com.example.carmanagement.commons.data.mapper.customer.CustomerMapper;
 import com.example.carmanagement.commons.data.mapper.service.ServiceOrderMapper;
 import com.example.carmanagement.commons.data.request.order.OrderRequest;

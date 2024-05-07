@@ -2,6 +2,7 @@ package com.example.carmanagement.commons.data.response.order;
 
 import com.example.carmanagement.commons.data.response.accessory.AccessoryOrderResponse;
 import com.example.carmanagement.commons.data.response.booking.BookingResponse;
+import com.example.carmanagement.commons.data.response.car.CarResponse;
 import com.example.carmanagement.commons.data.response.customer.CustomerResponse;
 import com.example.carmanagement.commons.data.response.service.ServiceOrderResponse;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class OrderResponse {
     private Integer id;
-    private Double price;
+    private Double totalPrice;
     private String currency;
     private String status;
     private List<ServiceOrderResponse> serviceOrders;

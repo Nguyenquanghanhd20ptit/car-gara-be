@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class AccessoryOrderResponse {
     private Integer id;
     private Integer quantity;
-    private Double totalPrice;
+    private Double price;
     private String currency;
     private AccessoryResponse accessory;
     private LocalDateTime createdAt;

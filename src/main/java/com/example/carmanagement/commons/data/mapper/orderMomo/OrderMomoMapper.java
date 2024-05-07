@@ -18,6 +18,7 @@ public class OrderMomoMapper {
 
     public InformationOrderMomo toOrderMomo(OrderEntity entity,String redirectUrl) {
         return new InformationOrderMomo()
+                .setAmount(entity.getTotalPrice().longValue())
                 .setOrderId(entity.getId().toString())
                 .setUserInfo(toUserInfoMomo(entity.getCustomer()))
                 .setRedirectUrl(redirectUrl)
@@ -47,7 +48,7 @@ public class OrderMomoMapper {
                             .setCurrency(accessory.getAccessory().getCurrency())
                             .setUnit("Thiết bị")
                             .setQuantity(accessory.getQuantity())
-                            .setTotalPrice(accessory.getTotalPrice().longValue());
+                            .setTotalPrice((long) (accessory.getPrice() * accessory.getQuantity()));
                     return itemMomo;
                 }).forEach(combinedMomoList::add);
 
@@ -62,7 +63,7 @@ public class OrderMomoMapper {
                             .setCurrency(service.getService().getCurrency())
                             .setQuantity(1)
                             .setUnit("Dịch vụ")
-                            .setTotalPrice(service.getTotalPrice().longValue());
+                            .setTotalPrice(service.getPrice().longValue());
                     return itemMomo;
                 }).forEach(combinedMomoList::add);
         return combinedMomoList;

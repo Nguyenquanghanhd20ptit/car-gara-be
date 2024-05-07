@@ -1,27 +1,21 @@
-package com.example.carmanagement.commons.data.entity;
+package com.example.carmanagement.commons.data.response.customer;
 
+import com.example.carmanagement.commons.data.response.order.OrderResponse;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.criterion.Order;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Accessors(chain = true)
-@Entity
-@Table(name = "customer")
-public class CustomerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerOrderResponse {
     private Integer id;
     private String name;
     private String email;
     private String address;
     private String phoneNumber;
     private String avatarUrl;
-    @CreationTimestamp
+    private List<OrderResponse> orders;
     private LocalDateTime createdAt;
 }
